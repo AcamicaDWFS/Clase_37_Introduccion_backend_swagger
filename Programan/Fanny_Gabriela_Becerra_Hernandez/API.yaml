@@ -1,0 +1,222 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 'Fanny Programamos'
+  description: 'Foro'
+  termsOfService: 'http://example-terms.com'
+  contact:
+    name: 'Admin'
+    url: 'http://example-contact.com'
+    email: 'xhiomi@gmail.com'
+  license:
+    name: 'Apache 2.0'
+    url: 'http://example-license.com'
+host: 'example-host.com'
+basePath: '/v1'
+tags:
+- name: 'Foro'
+  description: 'Programan Clase 37.'
+  externalDocs:
+    description: 'Foro'
+    url: 'http://example-foro.com'
+schemes:
+- 'http'
+- 'https'
+paths:
+  /usuarios:
+    get:
+      summary: 'Listar'
+      description: 'Listar usuarios'
+      responses:
+        200:
+          description: OK
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/usuarios'
+    post:
+      summary: 'Añadir'
+      description: 'Añadir usuarios'
+      parameters:
+      - in: 'body'
+        name: 'body'
+        description: 'Objeto'
+        required: true
+        schema:
+          $ref: '#/definitions/usuarios'
+      responses:
+        200:
+          description: OK
+        403:
+          description: Forbidden
+    put:
+      summary: 'Actualizar'
+      description: 'Actualizar usuario'
+      parameters:
+      - in: 'query'
+        name: 'body'
+        description: 'id'
+        required: true
+        type: 'string'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+    delete:
+      summary: 'Eliminar'
+      description: 'Eliminar usuario'
+      parameters:
+      - in: 'query'
+        name: 'body'
+        description: 'id'
+        required: true
+        type: 'string'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+  /comentarios:
+    get:
+      summary: 'Listar'
+      description: 'Listar comentarios'
+      responses:
+        200:
+          description: OK
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/comentarios'
+    post:
+      summary: 'Añadir'
+      description: 'Añadir comentarios'
+      parameters:
+      - in: 'body'
+        name: 'body'
+        description: 'Objeto'
+        required: true
+        schema:
+          $ref: '#/definitions/comentarios'
+      responses:
+        200:
+          description: OK
+        403:
+          description: Forbidden
+    put:
+      summary: 'Actualizar'
+      description: 'Actualizar comentario'
+      parameters:
+      - in: 'query'
+        name: 'body'
+        description: 'id'
+        required: true
+        type: 'string'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+    delete:
+      summary: 'Eliminar'
+      description: 'Eliminar comentario'
+      parameters:
+      - in: 'query'
+        name: 'body'
+        description: 'id'
+        required: true
+        type: 'string'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+  /topicos:
+    get:
+      summary: 'Listar'
+      description: 'Listartópicos'
+      responses:
+        200:
+          description: OK
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/topicos'
+    post:
+      summary: 'Añadir'
+      description: 'Añadir topicos'
+      parameters:
+      - in: 'body'
+        name: 'body'
+        description: 'Objeto'
+        required: true
+        schema:
+          $ref: '#/definitions/topicos'
+      responses:
+        200:
+          description: OK
+        403:
+          description: Forbidden
+    put:
+      summary: 'Actualizar'
+      description: 'Actualizar tópico'
+      parameters:
+      - in: 'query'
+        name: 'body'
+        description: 'id'
+        required: true
+        type: 'string'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+    delete:
+      summary: 'Eliminar'
+      description: 'Eliminar tópico'
+      parameters:
+      - in: 'query'
+        name: 'body'
+        description: 'id'
+        required: true
+        type: 'string'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+definitions:
+  usuarios:
+    type: 'object'
+    properties:
+      id:
+        type: 'string'
+        format: 'ini64'
+      nombre:
+        type: 'string'
+      apellido:
+        type: 'string'
+      email:
+        type: 'string'
+  comentarios:
+    type: 'object'
+    properties:
+      id:
+        type: 'string'
+        format: 'ini64'
+      topico id:
+        type: 'string'
+      usuario id:
+        type: 'string'
+      comentario:
+        type: 'string'
+  topicos:
+    type: 'object'
+    properties:
+      id:
+        type: 'string'
+        format: 'ini64'
+      titulo:
+        type: 'string'
+      descripcion:
+        type: 'string'
