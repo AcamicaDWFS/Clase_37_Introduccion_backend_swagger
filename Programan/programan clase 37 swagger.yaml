@@ -1,0 +1,271 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Foro API
+  description: API para el mantenimiento de un foro
+  termsOfService: https:localhost5500/terms
+  contact:
+    name: Lissette Vásquez
+    url: http://www.lisvasquez.com
+    email: lisvsz@hotmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENCE-2.0.html
+basePath: "/v2"
+paths:
+  /Usuarios:
+    get:
+      summary: Lista de usuarios
+      description: Proporcionar toda la información de los usuarios
+      responses:
+        200: 
+          description: El listado ha sido cargado con éxito
+        405: 
+          description: No se puede proporcionar la información solicitada
+    post:
+      summary: Alta usuarios
+      description: Se genera el registro de un nuevo usuario en la base de datos
+      parameters:
+        - in: "body"
+          name: "body"
+          description: Objeto para registrar nuevo usuario en la base de datos
+          required: true
+          schema:
+            $ref: '#/definitions/Usuarios'
+      responses:
+        200:
+          description: Respuesta exitosa :)
+        405:
+          description: No se puede proporcionar la información solicitada
+    patch:
+      summary: Baja de usuario
+      description: Dar de baja temporal a un usuario en la base de datos, cambiar status del usuario
+      responses:
+          200:
+            description: Respuesta exitosa :)
+          405:
+            description: No se puede proporcionar la información solicitada
+      parameters:
+        - in: "body"
+          name: body
+          description: Objeto para dar de baja temporal a un usuario
+          required: true
+          schema:
+            $ref: '#/definitions/Usuarios'
+    put:
+      summary: Actualizar usuario
+      description: Se actualizará la información completa del usuario en la base de datos
+      responses:
+          200:
+            description: Respuesta exitosa :)
+          405:
+            description: No se puede proporcionar la información solicitada
+      parameters:
+        - in: "body"
+          name: body
+          description: Objeto para actualizar información del usuario
+          required: true
+          schema:
+            $ref: '#/definitions/Usuarios'
+    delete:
+      summary: Eliminar usuario
+      description: Se elimina la información completa del usuario en la base de datos
+      responses:
+          200:
+            description: Respuesta exitosa :)
+          405:
+            description: No fue posible realizar la petición solicitada
+      parameters:
+        - in: "body"
+          name: body
+          description: Objeto para borrar la información del usuario
+          required: true
+          schema:
+            $ref: '#/definitions/Usuarios'
+            
+  /Topicos:
+    get:
+      summary: Lista de tópicos
+      description: Proporcionar todos los tópicos del foro
+      responses:
+        200: 
+          description: El listado ha sido cargado con éxito
+        405: 
+          description: No se puede proporcionar la información solicitada
+    post:
+      summary: Generar nuevo tópico
+      description: Se genera el registro de un nuevo tópico en la base de datos
+      parameters:
+        - in: "body"
+          name: "body"
+          description: Objeto para registrar nuevo tópico en la base de datos
+          required: true
+          schema:
+            $ref: '#/definitions/Topicos'
+      responses:
+        200:
+          description: Respuesta exitosa :)
+        405:
+          description: No se puede proporcionar la información solicitada
+    patch:
+      summary: Baja de tópico
+      description: Dar de baja temporal un tópico en la base de datos, cambiar status del tópico
+      responses:
+          200:
+            description: Respuesta exitosa :)
+          405:
+            description: No se puede proporcionar la información solicitada
+      parameters:
+        - in: "body"
+          name: body
+          description: Objeto para dar de baja temporal un tópico
+          required: true
+          schema:
+            $ref: '#/definitions/Topicos'
+    put:
+      summary: Actualizar un tópico
+      description: Se actualizará la información completa del tópico en la base de datos
+      responses:
+          200:
+            description: Respuesta exitosa :)
+          405:
+            description: No se puede proporcionar la información solicitada
+      parameters:
+        - in: "body"
+          name: body
+          description: Objeto para actualizar un tópico
+          required: true
+          schema:
+            $ref: '#/definitions/Topicos'
+    delete:
+      summary: Eliminar tópico
+      description: Se elimina la información completa del tópico en la base de datos
+      responses:
+          200:
+            description: Respuesta exitosa :)
+          405:
+            description: No fue posible realizar la petición solicitada
+      parameters:
+        - in: "body"
+          name: body
+          description: Objeto para borrar la información del tópico
+          required: true
+          schema:
+            $ref: '#/definitions/Topicos'
+            
+  /Comentarios:
+    get:
+      summary: Lista de comentarios
+      description: Proporcionar todos los comentarios del foro
+      responses:
+        200: 
+          description: El listado ha sido cargado con éxito
+        405: 
+          description: No se puede proporcionar la información solicitada
+    post:
+      summary: Generar nuevo comentario
+      description: Se genera el registro de un nuevo comentario en la base de datos
+      parameters:
+        - in: "body"
+          name: "body"
+          description: Objeto para registrar nuevo comentario en la base de datos
+          required: true
+          schema:
+            $ref: '#/definitions/Comentarios'
+      responses:
+        200:
+          description: Respuesta exitosa :)
+        405:
+          description: No se puede proporcionar la información solicitada
+    patch:
+      summary: Baja de comentario
+      description: Dar de baja temporal un comentario en la base de datos, cambiar status del comentario
+      responses:
+          200:
+            description: Respuesta exitosa :)
+          405:
+            description: No se puede proporcionar la información solicitada
+      parameters:
+        - in: "body"
+          name: body
+          description: Objeto para dar de baja temporal un comentario
+          required: true
+          schema:
+            $ref: '#/definitions/Comentarios'
+    put:
+      summary: Actualizar un comentario
+      description: Se actualizará la información completa del comentario en la base de datos
+      responses:
+          200:
+            description: Respuesta exitosa :)
+          405:
+            description: No se puede proporcionar la información solicitada
+      parameters:
+        - in: "body"
+          name: body
+          description: Objeto para actualizar un comentario
+          required: true
+          schema:
+            $ref: '#/definitions/Comentarios'
+    delete:
+      summary: Eliminar comentario
+      description: Se elimina la información completa del comentario en la base de datos
+      responses:
+          200:
+            description: Respuesta exitosa :)
+          405:
+            description: No fue posible realizar la petición solicitada
+      parameters:
+        - in: "body"
+          name: body
+          description: Objeto para borrar el comentario
+          required: true
+          schema:
+            $ref: '#/definitions/Comentarios'
+          
+definitions:
+  Usuarios:
+    type: "object"
+    properties:
+      usuario id:
+        type: integer
+        format: "01"
+      nombre:
+        type: string
+        format: Pepe
+      apellido:
+        type: string
+        format: Pecas
+      email:
+        type: string
+        format: pepe@pepepecas.com
+  Topicos:
+    type: "object"
+    properties:
+      topico id:
+        type: integer
+        format: "t01"
+      titulo:
+        type: string
+        format: Título 1
+      descripcion:
+        type: string
+        format: Cómo crear tu API REST
+  Comentarios:
+    type: "object"
+    properties:
+      comentario id:
+        type: integer
+        format: "c01"
+      topico id:
+        type: integer
+        format: "t01"
+      usuario id:
+        type: integer
+        format: "01"
+      comentario:
+        type: string
+        format: Excelente comentario :D
+        
+        
+  
