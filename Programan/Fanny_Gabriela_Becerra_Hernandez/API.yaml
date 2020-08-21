@@ -33,12 +33,18 @@ schemes:
 - 'http'
 - 'https'
 paths:
-  /usuarios:
+  /usuarios/{id}:
     get:
       tags:
       - "usuarios"
       summary: 'Listar'
       description: 'Listar usuarios'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
       responses:
         200:
           description: OK
@@ -52,12 +58,11 @@ paths:
       summary: 'Añadir'
       description: 'Añadir usuarios'
       parameters:
-      - in: 'body'
-        name: 'body'
-        description: 'Objeto'
+      - in: 'path'
+        name: 'id'
+        description: 'id'
         required: true
-        schema:
-          $ref: '#/definitions/usuarios'
+        type: 'number'
       responses:
         200:
           description: OK
@@ -69,8 +74,8 @@ paths:
       summary: 'Actualizar'
       description: 'Actualizar usuario'
       parameters:
-      - in: 'query'
-        name: 'body'
+      - in: 'path'
+        name: 'id'
         description: 'id'
         required: true
         type: 'number'
@@ -85,8 +90,8 @@ paths:
       summary: 'Eliminar'
       description: 'Eliminar usuario'
       parameters:
-      - in: 'query'
-        name: 'body'
+      - in: 'path'
+        name: 'id'
         description: 'id'
         required: true
         type: 'number'
@@ -95,12 +100,18 @@ paths:
           description: OK
         403:
           description: 'Elemento invalido'
-  /comentarios:
+  /comentarios/{id}:
     get:
       tags:
       - "comentarios"
       summary: 'Listar'
       description: 'Listar comentarios'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
       responses:
         200:
           description: OK
@@ -114,12 +125,11 @@ paths:
       summary: 'Añadir'
       description: 'Añadir comentarios'
       parameters:
-      - in: 'body'
-        name: 'body'
-        description: 'Objeto'
+      - in: 'path'
+        name: 'id'
+        description: 'id'
         required: true
-        schema:
-          $ref: '#/definitions/comentarios'
+        type: 'number'
       responses:
         200:
           description: OK
@@ -131,8 +141,8 @@ paths:
       summary: 'Actualizar'
       description: 'Actualizar comentario'
       parameters:
-      - in: 'query'
-        name: 'body'
+      - in: 'path'
+        name: 'id'
         description: 'id'
         required: true
         type: 'number'
@@ -147,8 +157,8 @@ paths:
       summary: 'Eliminar'
       description: 'Eliminar comentario'
       parameters:
-      - in: 'query'
-        name: 'body'
+      - in: 'path'
+        name: 'id'
         description: 'id'
         required: true
         type: 'number'
@@ -157,12 +167,18 @@ paths:
           description: OK
         403:
           description: 'Elemento invalido'
-  /topicos:
+  /topicos/{id}:
     get:
       tags:
       - "topicos"
       summary: 'Listar'
       description: 'Listar tópicos'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
       responses:
         200:
           description: OK
@@ -176,12 +192,11 @@ paths:
       summary: 'Añadir'
       description: 'Añadir topicos'
       parameters:
-      - in: 'body'
-        name: 'body'
-        description: 'Objeto'
+      - in: 'path'
+        name: 'id'
+        description: 'id'
         required: true
-        schema:
-          $ref: '#/definitions/topicos'
+        type: 'number'
       responses:
         200:
           description: OK
@@ -193,8 +208,8 @@ paths:
       summary: 'Actualizar'
       description: 'Actualizar tópico'
       parameters:
-      - in: 'query'
-        name: 'body'
+      - in: 'path'
+        name: 'id'
         description: 'id'
         required: true
         type: 'number'
@@ -209,8 +224,8 @@ paths:
       summary: 'Eliminar'
       description: 'Eliminar tópico'
       parameters:
-      - in: 'query'
-        name: 'body'
+      - in: 'path'
+        name: 'id'
         description: 'id'
         required: true
         type: 'number'
