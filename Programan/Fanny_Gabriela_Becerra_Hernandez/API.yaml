@@ -1,0 +1,271 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 'Fanny Programamos'
+  description: 'Foro'
+  termsOfService: 'http://example-terms.com'
+  contact:
+    name: 'Admin'
+    url: 'http://example-contact.com'
+    email: 'xhiomi@gmail.com'
+  license:
+    name: 'Apache 2.0'
+    url: 'http://opensource.org/licenses/MIT'
+host: 'example-host.com'
+basePath: '/v1'
+tags: 
+- name: 'usuarios'
+  description: 'Usuarios descripción'
+  externalDocs:
+    description: 'usuarios'
+    url: 'http://example-usuarios.com'
+- name: 'comentarios'
+  description: 'Comentarios descripción'
+  externalDocs:
+    description: 'comentarios'
+    url: 'http://example-comentarios.com'
+- name: 'topicos'
+  description: 'Tópicos descripción'
+  externalDocs:
+    description: 'topicos'
+    url: 'http://example-topicos.com'
+schemes: 
+- 'http'
+- 'https'
+paths:
+  /usuarios/{id}:
+    get:
+      tags:
+      - "usuarios"
+      summary: 'Listar'
+      description: 'Listar usuarios'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/usuarios'
+    post:
+      tags:
+      - "usuarios"
+      summary: 'Añadir'
+      description: 'Añadir usuarios'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+        403:
+          description: Forbidden
+    put:
+      tags:
+      - "usuarios"
+      summary: 'Actualizar'
+      description: 'Actualizar usuario'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+    delete:
+      tags:
+      - "usuarios"
+      summary: 'Eliminar'
+      description: 'Eliminar usuario'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+  /comentarios/{id}:
+    get:
+      tags:
+      - "comentarios"
+      summary: 'Listar'
+      description: 'Listar comentarios'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/comentarios'
+    post:
+      tags:
+      - "comentarios"
+      summary: 'Añadir'
+      description: 'Añadir comentarios'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+        403:
+          description: Forbidden
+    put:
+      tags:
+      - "comentarios"
+      summary: 'Actualizar'
+      description: 'Actualizar comentario'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+    delete:
+      tags:
+      - "comentarios"
+      summary: 'Eliminar'
+      description: 'Eliminar comentario'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+  /topicos/{id}:
+    get:
+      tags:
+      - "topicos"
+      summary: 'Listar'
+      description: 'Listar tópicos'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definitions/topicos'
+    post:
+      tags:
+      - "topicos"
+      summary: 'Añadir'
+      description: 'Añadir topicos'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+        403:
+          description: Forbidden
+    put:
+      tags:
+      - "topicos"
+      summary: 'Actualizar'
+      description: 'Actualizar tópico'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+    delete:
+      tags:
+      - "topicos"
+      summary: 'Eliminar'
+      description: 'Eliminar tópico'
+      parameters:
+      - in: 'path'
+        name: 'id'
+        description: 'id'
+        required: true
+        type: 'number'
+      responses:
+        200:
+          description: OK
+        403:
+          description: 'Elemento invalido'
+definitions:
+  usuarios:
+    type: 'object'
+    properties:
+      id:
+        type: 'number'
+        format: 'ini64'
+      nombre:
+        type: 'string'
+      apellido:
+        type: 'string'
+      email:
+        type: 'string'
+  comentarios:
+    type: 'object'
+    properties:
+      id:
+        type: 'number'
+        format: 'ini64'
+      topico id:
+        type: 'string'
+      usuario id:
+        type: 'string'
+      comentario:
+        type: 'string'
+  topicos:
+    type: 'object'
+    properties:
+      id:
+        type: 'number'
+        format: 'ini64'
+      titulo:
+        type: 'string'
+      descripcion:
+        type: 'string'
