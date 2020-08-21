@@ -1,0 +1,258 @@
+swagger: "2.0"
+info:
+  title: Control de foro
+  description: Una API para manejar el foro. Permite tener control sobre los usuarios, comentarios y tópicos.
+  version: 1.0.0
+  contact:
+    email: "calcetin.izquierdo@gmail.com"
+  license:
+    name: "The MIT License"
+    url: "https://www.mit.edu/~amini/LICENSE.md"
+  
+host: api.foro.com
+basePath: /v1
+tags:
+- name: "user"
+  description: "Usuario del foro."
+- name: "comment"
+  description: "Comentario dentro de uno de los foros."
+- name: "topic"
+  description: "Tópico dentro del foro."
+schemes:
+  - http
+  - https
+paths:
+  /user:
+    post:
+      tags:
+      - "user"
+      summary: "Añade un nuevo usuario al foro."
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "user"
+        description: "Objeto usuario que será añadido al foro."
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "OK"
+    delete:
+      tags:
+      - "user"
+      summary: "Elimina un usuario."
+      description: "Recibe la ID del usuario y lo elimina."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        description: "ID del usuario que se desea eliminar."
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "OK - Usuario eliminado."
+        "404":
+          description: "Usuario no encontrado."
+    put:
+      tags:
+      - "user"
+      summary: "Actualiza un usuario."
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "userId"
+        description: "ID del usuario que se desea modificar."
+        required: true
+        type: "integer"
+      - in: "query"
+        name: "name"
+        description: "Nuevo nombre del usuario."
+        required: false
+        type: "string"
+      - in: "query"
+        name: "lastName"
+        description: "Nuevo apellido del usuario."
+        required: false
+        type: "string"
+      - in: "query"
+        name: "email"
+        description: "Nuevo email del usuario."
+        required: false
+        type: "string"
+        format: "email"
+      responses:
+        "200":
+          description: "OK - Usuario modificado."
+        "404":
+          description: "Usuario no encontrado."
+  /comment:
+    post:
+      tags:
+      - "comment"
+      summary: "Añade un comentario al foro y lo asocia con un usuario y un tópico."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "comment"
+        description: "Objeto comentario que será añadido al foro."
+        required: true
+        schema:
+          $ref: "#/definitions/Comment"
+      responses:
+        "200":
+          description: "OK"
+    delete:
+      tags:
+      - "comment"
+      summary: "Elimina un comentario."
+      description: "Recibe la ID del comentario y lo elimina."
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        description: "ID del comentario que se desea eliminar."
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "OK - Comentario eliminado."
+        "404":
+          description: "Comentario no encontrado."
+    put:
+      tags:
+      - "comment"
+      summary: "Actualiza un comentario."
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        description: "ID del comentario que se desea modificar."
+        required: true
+        type: "integer"
+      - in: "query"
+        name: "content"
+        description: "Texto del comentario actualizado."
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "OK - Comentario actualizado."
+        "404":
+          description: "Comentario no encontrado."
+  /topic:
+    post:
+      tags:
+      - "topic"
+      summary: "Añade un tópico al foro."
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "topic"
+        description: "Objeto de un tópico que será añadido al foro."
+        required: true
+        schema:
+          $ref: "#/definitions/Topic"
+      responses:
+        "200":
+          description: "OK"
+    delete:
+      tags:
+      - "topic"
+      summary: "Elimina un tópico."
+      description: "Recibe la ID de un tópico y lo elimina."
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        description: "ID del tópico que se desea eliminar."
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "OK - Tópico eliminado."
+        "404":
+          description: "Tópico no encontrado."
+    put:
+      tags:
+      - "topic"
+      summary: "Actualiza un tópico."
+      produces:
+      - "application/json"
+      parameters:
+      - in: "query"
+        name: "id"
+        description: "ID del tópico que se desea modificar."
+        required: true
+        type: "integer"
+      - in: "query"
+        name: "title"
+        description: "Título actualizado del tópico."
+        required: false
+        type: "string"
+      - in: "query"
+        name: "description"
+        description: "Descripción actualizada del tópico."
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "OK - Tópico actualizado."
+        "404":
+          description: "Tópico no encontrado."
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+        format: "email"
+  Comment:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      topicId:
+        type: "integer"
+        format: "int64"
+      userId:
+        type: "integer"
+        format: "int64"
+      content:
+        type: "string"
+  Topic:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      title:
+        type: "string"
+      description:
+        type: "string"
