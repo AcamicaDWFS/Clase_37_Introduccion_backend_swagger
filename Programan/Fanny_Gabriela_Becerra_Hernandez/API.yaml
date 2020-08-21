@@ -10,21 +10,33 @@ info:
     email: 'xhiomi@gmail.com'
   license:
     name: 'Apache 2.0'
-    url: 'http://example-license.com'
+    url: 'http://opensource.org/licenses/MIT'
 host: 'example-host.com'
 basePath: '/v1'
-tags:
-- name: 'Foro'
-  description: 'Programan Clase 37.'
+tags: 
+- name: 'usuarios'
+  description: 'Usuarios descripción'
   externalDocs:
-    description: 'Foro'
-    url: 'http://example-foro.com'
-schemes:
+    description: 'usuarios'
+    url: 'http://example-usuarios.com'
+- name: 'comentarios'
+  description: 'Comentarios descripción'
+  externalDocs:
+    description: 'comentarios'
+    url: 'http://example-comentarios.com'
+- name: 'topicos'
+  description: 'Tópicos descripción'
+  externalDocs:
+    description: 'topicos'
+    url: 'http://example-topicos.com'
+schemes: 
 - 'http'
 - 'https'
 paths:
   /usuarios:
     get:
+      tags:
+      - "usuarios"
       summary: 'Listar'
       description: 'Listar usuarios'
       responses:
@@ -35,6 +47,8 @@ paths:
             items:
               $ref: '#/definitions/usuarios'
     post:
+      tags:
+      - "usuarios"
       summary: 'Añadir'
       description: 'Añadir usuarios'
       parameters:
@@ -50,6 +64,8 @@ paths:
         403:
           description: Forbidden
     put:
+      tags:
+      - "usuarios"
       summary: 'Actualizar'
       description: 'Actualizar usuario'
       parameters:
@@ -57,13 +73,15 @@ paths:
         name: 'body'
         description: 'id'
         required: true
-        type: 'string'
+        type: 'number'
       responses:
         200:
           description: OK
         403:
           description: 'Elemento invalido'
     delete:
+      tags:
+      - "usuarios"
       summary: 'Eliminar'
       description: 'Eliminar usuario'
       parameters:
@@ -71,7 +89,7 @@ paths:
         name: 'body'
         description: 'id'
         required: true
-        type: 'string'
+        type: 'number'
       responses:
         200:
           description: OK
@@ -79,6 +97,8 @@ paths:
           description: 'Elemento invalido'
   /comentarios:
     get:
+      tags:
+      - "comentarios"
       summary: 'Listar'
       description: 'Listar comentarios'
       responses:
@@ -89,6 +109,8 @@ paths:
             items:
               $ref: '#/definitions/comentarios'
     post:
+      tags:
+      - "comentarios"
       summary: 'Añadir'
       description: 'Añadir comentarios'
       parameters:
@@ -104,6 +126,8 @@ paths:
         403:
           description: Forbidden
     put:
+      tags:
+      - "comentarios"
       summary: 'Actualizar'
       description: 'Actualizar comentario'
       parameters:
@@ -111,13 +135,15 @@ paths:
         name: 'body'
         description: 'id'
         required: true
-        type: 'string'
+        type: 'number'
       responses:
         200:
           description: OK
         403:
           description: 'Elemento invalido'
     delete:
+      tags:
+      - "comentarios"
       summary: 'Eliminar'
       description: 'Eliminar comentario'
       parameters:
@@ -125,7 +151,7 @@ paths:
         name: 'body'
         description: 'id'
         required: true
-        type: 'string'
+        type: 'number'
       responses:
         200:
           description: OK
@@ -133,8 +159,10 @@ paths:
           description: 'Elemento invalido'
   /topicos:
     get:
+      tags:
+      - "topicos"
       summary: 'Listar'
-      description: 'Listartópicos'
+      description: 'Listar tópicos'
       responses:
         200:
           description: OK
@@ -143,6 +171,8 @@ paths:
             items:
               $ref: '#/definitions/topicos'
     post:
+      tags:
+      - "topicos"
       summary: 'Añadir'
       description: 'Añadir topicos'
       parameters:
@@ -158,6 +188,8 @@ paths:
         403:
           description: Forbidden
     put:
+      tags:
+      - "topicos"
       summary: 'Actualizar'
       description: 'Actualizar tópico'
       parameters:
@@ -165,13 +197,15 @@ paths:
         name: 'body'
         description: 'id'
         required: true
-        type: 'string'
+        type: 'number'
       responses:
         200:
           description: OK
         403:
           description: 'Elemento invalido'
     delete:
+      tags:
+      - "topicos"
       summary: 'Eliminar'
       description: 'Eliminar tópico'
       parameters:
@@ -179,7 +213,7 @@ paths:
         name: 'body'
         description: 'id'
         required: true
-        type: 'string'
+        type: 'number'
       responses:
         200:
           description: OK
@@ -190,7 +224,7 @@ definitions:
     type: 'object'
     properties:
       id:
-        type: 'string'
+        type: 'number'
         format: 'ini64'
       nombre:
         type: 'string'
@@ -202,7 +236,7 @@ definitions:
     type: 'object'
     properties:
       id:
-        type: 'string'
+        type: 'number'
         format: 'ini64'
       topico id:
         type: 'string'
@@ -214,7 +248,7 @@ definitions:
     type: 'object'
     properties:
       id:
-        type: 'string'
+        type: 'number'
         format: 'ini64'
       titulo:
         type: 'string'
