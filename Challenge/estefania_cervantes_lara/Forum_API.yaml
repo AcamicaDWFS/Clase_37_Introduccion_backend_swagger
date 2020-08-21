@@ -1,0 +1,280 @@
+swagger: "2.0"
+info:
+  description: "Esta API permite la gestión de diversos foros."
+  version: "1.0.0"
+  title: "Forum API"
+  
+  contact:
+    email: "info@forum.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "forum.com"
+basePath: "/v1"
+tags:
+- name: "Users"
+  description: "Everything about your Users"
+  externalDocs:
+    description: "Find out more"
+    url: "http://wwww.forum.com"
+- name: "Topics"
+  description: "Access to Topics"
+- name: "Comments"
+  description: "Operations about comments"
+  externalDocs:
+    description: "Find out more"
+    url: "http://wwww.forum.com"
+schemes:
+- "https"
+- "http"
+paths:
+  /Users:
+    post:
+      tags:
+      - "Users"
+      summary: "Add a new user"
+      description: ""
+      operationId: "addUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Add a new user"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "OK"
+  
+    put:
+      tags:
+      - "Users"
+      summary: "Update or unsubscribe an existing user"
+      description: ""
+      operationId: "updateUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be update or unsubscribe in a forum"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "OK"
+        "404":
+          description: "User not found"
+          
+          
+    delete:
+      tags:
+      - "Users"
+      summary: "Delete an existing user"
+      description: ""
+      operationId: "deleteUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be delete in a forum"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "OK"
+        "404":
+          description: "User not found"
+
+  /topics:
+    post:
+      tags:
+      - "Topics"
+      summary: "Add a new topic"
+      description: ""
+      operationId: "addTopic"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Add a new topic"
+        required: true
+        schema:
+          $ref: "#/definitions/Topic"
+      responses:
+        "200":
+          description: "OK"
+        "409":
+          description: "(Conflict) this topic already exists..."
+        
+      
+    put:
+      tags:
+      - "Topics"
+      summary: "Update or unsubscribe an existing topic"
+      description: ""
+      operationId: "updateTopic"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Topic object that needs to be update or unsubscribe in a forum"
+        required: true
+        schema:
+          $ref: "#/definitions/Topic"
+      responses:
+        "200":
+          description: "OK"
+        "404":
+          description: "Topic not found"
+          
+          
+    delete:
+      tags:
+      - "Topics"
+      summary: "Delete an existing topic"
+      description: ""
+      operationId: "deleteTopic"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Topic object that needs to be delete in a forum"
+        required: true
+        schema:
+          $ref: "#/definitions/Topic"
+      responses:
+        "200":
+          description: "OK"
+        "404":
+          description: "Topic not found"
+        
+  /Comments:
+    post:
+      tags:
+      - "Comments"
+      summary: "Add a new comment"
+      description: ""
+      operationId: "addComment"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Add a new comment"
+        required: true
+        schema:
+          $ref: "#/definitions/Comments"
+      responses:
+        "200":
+          description: "OK"
+        
+      
+    put:
+      tags:
+      - "Comments"
+      summary: "Update or unsubscribe an existing comment"
+      description: ""
+      operationId: "updateComment"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Comment object that needs to be update or unsubscribe in a forum"
+        required: true
+        schema:
+          $ref: "#/definitions/Comments"
+      responses:
+        "200":
+          description: "OK"
+        "404":
+          description: "Comment not found"
+          
+          
+    delete:
+      tags:
+      - "Comments"
+      summary: "Delete an existing comment"
+      description: ""
+      operationId: "deleteComment"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Comment object that needs to be delete in a forum"
+        required: true
+        schema:
+          $ref: "#/definitions/Comments"
+      responses:
+        "200":
+          description: "OK"
+        "404":
+          description: "Comment not found"
+    
+  
+definitions:
+  User:
+    type: "object"
+    properties:
+      idUser:
+        type: "integer"
+      name:
+        type: "string"
+      surname:
+        type: "string"
+      email:
+        type: "string"
+        
+  Comments:
+    type: "object"
+    properties:
+      idComment:
+        type: "integer"
+      idTopic:
+        $ref: "#/definitions/Topic/properties/idTopic"
+      idUser:
+        $ref: "#/definitions/User/properties/idUser"
+      Comment:
+        type: "string"
+        
+  Topic:
+    type: "object"
+    properties:
+      idTopic:
+        type: "integer"
+      titleTopic:
+        type: "string"
+      descriptionTopic:
+        type: "string"
+        
+externalDocs:
+  description: "Find out more about Forum"
+  url: "http://www.forum.com"
