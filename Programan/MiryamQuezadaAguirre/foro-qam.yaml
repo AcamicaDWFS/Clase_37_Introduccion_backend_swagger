@@ -1,0 +1,424 @@
+swagger: "2.0"
+info:
+  description: "Programan - Gestión de Usuarios Foro - Miryam QA "
+  version: "1.0.0"
+  title: "Gestión de usuarios Foro"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "adminforo@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "foro.swagger.io"
+basePath: "/v0"
+tags:
+- name: "Foro"
+  description: "Maneja tu foro de los temas que más te gusten"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+schemes:
+- "https"
+- "http"
+paths:
+  /topics:
+    post:
+      tags:
+      - "Topicos"
+      summary: "Alta topico"
+      description: "Alta de nuevo tema a debatir en el foro"
+      operationId: "addTopic"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto topico que necesita ser añadido al foro"
+        required: true
+        schema:
+          $ref: "#/definitions/Topicos"
+      responses:
+        200: 
+          description: OK
+        404: 
+          description: "Recurso no encontrado"
+        405:
+          description: "Invalid input"
+      security:
+      - api_key: []
+  /topics/{id}:
+    put:
+      tags:
+      - "Topicos"
+      summary: "Modificar topico"
+      description: "Modificar un topico existente"
+      operationId: "updateTopic"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID del topico a modificar"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "body"  
+        in: "body"
+        description: "Objeto para modificar un topico ya existente"
+        required: true
+        schema:
+          $ref: "#/definitions/Topicos"
+      responses:
+        "400":
+          description: "Identificador de tema no valido"
+        "404":
+          description: "Recurso no encontrado"
+      security:
+      - api_key: []
+    get:
+      tags:
+      - "Topicos"
+      summary: "Obtener topico"
+      description: "Regresa información del topico que se proporcione su Id"
+      operationId: "getTopicById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID del topico a retornar"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Operacion Exitosa"
+          schema:
+            $ref: "#/definitions/Topicos"
+        400:
+          description: "Identificador de topico no valido"
+        404:
+          description: "Topico no encontrado"
+      security:
+      - api_key: []
+   
+    delete:
+      tags:
+      - "Topicos"
+      summary: "Eliminar un topico"
+      description: "Eliminar topico por ID"
+      operationId: "deleteTopic"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "ID Topico a orquestar "
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "ID Invalido"
+        "404":
+          description: "Recurso no encontrado"
+      security:
+      - api_key: []
+
+  /users:
+    post:
+      tags:
+      - "Usuarios"
+      summary: "Alta usuario"
+      description: "Alta de nuevo usuario al foro"
+      operationId: "addUser"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto usuario que necesita ser añadido al foro"
+        required: true
+        schema:
+          $ref: "#/definitions/Usuarios"
+      responses:
+        200: 
+          description: OK
+        404: 
+          description: "Recurso no encontrado"
+        405:
+          description: "Invalid input"
+  /users/{id}:
+    put:
+      tags:
+      - "Usuarios"
+      summary: "Modificar usuario"
+      description: "Modificar un usuario existente"
+      operationId: "updateUser"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID del usuario a modificar"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "body"  
+        in: "body"
+        description: "Objeto para modificar un usuario ya existente"
+        required: true
+        schema:
+          $ref: "#/definitions/Usuarios"
+      responses:
+        "400":
+          description: "Identificador de usuario no valido"
+        "404":
+          description: "Usuario no encontrado"
+      security:
+      - api_key: []
+    get:
+      tags:
+      - "Usuarios"
+      summary: "Obtener usuario"
+      description: "Regresa información del usuario que se proporcione su Id"
+      operationId: "getUserById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID del usuario a retornar"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Operacion Exitosa"
+          schema:
+            $ref: "#/definitions/Usuarios"
+        400:
+          description: "Identificador de usuario no valido"
+        404:
+          description: "Usuario no encontrado"
+      security:
+      - api_key: []
+   
+    delete:
+      tags:
+      - "Usuarios"
+      summary: "Eliminar un usuario"
+      description: "Eliminar usuario por ID"
+      operationId: "deleteUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "Pet id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Pet not found"
+      security:
+      - api_key: []
+      
+  /comments:
+    post:
+      tags:
+      - "Comentarios"
+      summary: "Crear comentario"
+      description: "Creación de un nuevo comentario en el foro"
+      operationId: "addComment"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto comentario que necesita ser añadido al foro"
+        required: true
+        schema:
+          $ref: "#/definitions/Comentarios"
+      responses:
+        200: 
+          description: OK
+        404: 
+          description: "Recurso no encontrado"
+        405:
+          description: "Invalid input"
+      security:
+      - api_key: []
+  /coments/{id}:
+    put:
+      tags:
+      - "Comentarios"
+      summary: "Modificar comentario"
+      description: "Modificar un comentario existente"
+      operationId: "updateComment"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID del comentario a modificar"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "body"  
+        in: "body"
+        description: "Objeto para modificar un comentario ya existente"
+        required: true
+        schema:
+          $ref: "#/definitions/Comentarios"
+      responses:
+        "400":
+          description: "Identificador de tema no valido"
+        "404":
+          description: "Recurso no encontrado"
+      security:
+      - api_key: []
+    get:
+      tags:
+      - "Comentarios"
+      summary: "Obtener Comentarios"
+      description: "Regresa información del comentario que se proporcione su Id"
+      operationId: "getCommentById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID del comentario a retornar"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Operacion Exitosa"
+          schema:
+            $ref: "#/definitions/Comentarios"
+        400:
+          description: "Identificador de comentario no valido"
+        404:
+          description: "Comentario no encontrado"
+      security:
+      - api_key: []
+   
+    delete:
+      tags:
+      - "Comentarios"
+      summary: "Eliminar un comentario"
+      description: "Eliminación de comentario por ID"
+      operationId: "deleteComment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "id"
+        in: "path"
+        description: "ID comentario a eliminar"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "ID Invalido"
+        "404":
+          description: "Recurso no encontrado"
+      security:
+      - api_key: []
+
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Usuarios:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      nombre:
+        type: "string"
+      apellido:
+        type: "string"
+      email:
+        type: "string"
+    xml:
+      name: "Order"
+  Topicos:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      titulo:
+        type: "string"
+      descripcion:
+        type: "string"
+    xml:
+      name: "Order"
+  Comentarios:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      topicoId:
+         $ref: "#/definitions/Topicos"
+
+      usuarioId:
+         $ref: "#/definitions/Usuarios"
+      comentario:
+        type: "string"
+          
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
