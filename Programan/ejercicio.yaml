@@ -1,0 +1,336 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: Tarea
+  description: "Api de manejo de usuarios y comentarios de temas"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "manuel.acev07@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "petstore.consorcios.io"
+basePath: "/v1"
+tags:
+- name: "usuarios"
+  description: "Datos de usuario"
+  externalDocs:
+    description: "Detalla de datos"
+    url: "http://swagger.io"
+- name: "comentarios"
+  description: "Detalles de comentarios"
+- name: "topicos"
+  description: "Datos de topicos"
+  externalDocs:
+    description: "Detalla de Topicos"
+    url: "http://swagger.io"
+schemes: 
+- "https"
+- "http"
+paths:
+  /usuarios:
+      get:
+        tags: 
+        - "usuarios"
+        summary: "Lista"
+        description: "Lista de usuarios"
+        responses: 
+          200:
+            description: OK
+            schema:
+              type: "array"
+              items:
+                $ref: '#/definitions/Usuario'
+          405:
+            description: "Elemento Invalido"
+      post:
+        tags:
+        - "usuarios"
+        summary: "Alta"
+        description: "Agregar nuevo usuario"
+        operationId: "addUsuario"
+        consumes: 
+        - "application/json"
+        - "application/xml"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "body"
+          name: "body"
+          description: "Cuerpo de usuario a ser agregado"
+          required: true
+          schema:
+            $ref: "#/definitions/Usuario"
+        responses:
+          200:
+            description: OK
+          405:
+            description: FAIL
+      put:
+        tags:
+        - "usuarios"
+        summary: "Modificar"
+        description: "Modificar usuario"
+        operationId: "updateUsuario"
+        consumes: 
+        - "application/json"
+        - "application/xml"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "body"
+          name: "body"
+          description: "Cuerpo de usuario a ser agregado"
+          required: true
+          schema:
+            $ref: "#/definitions/Usuario"
+        responses:
+          200:
+            description: OK
+          405:
+            description: FAIL
+      delete:
+        tags:
+        - "usuarios"
+        summary: "Eliminar"
+        description: "Eliminar usuario"
+        operationId: "eliminarUsuario"
+        consumes: 
+        - "application/json"
+        - "application/xml"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "query"
+          name: "id"
+          description: "Eliminar usuario por id"
+          required: true
+          type: "integer"
+          format: "int64"
+        responses:
+          200:
+            description: OK
+          404:
+            description: "Usuario Invalido"
+  /comentarios:
+      get:
+        tags: 
+        - "comentarios"
+        summary: "Lista"
+        description: "Lista de comentarios"
+        responses: 
+          200:
+            description: OK
+            schema:
+              type: "array"
+              items:
+                $ref: '#/definitions/Comentario'
+          405:
+            description: "Elemento Invalido"
+      post:
+        tags:
+        - "comentarios"
+        summary: "Alta"
+        description: "Agregar nuevo comentario"
+        operationId: "addComentario"
+        consumes: 
+        - "application/json"
+        - "application/xml"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "body"
+          name: "body"
+          description: "Cuerpo de comentario a ser agregado"
+          required: true
+          schema:
+            $ref: "#/definitions/Comentario"
+        responses:
+          200:
+            description: OK
+          405:
+            description: FAIL
+      put:
+        tags:
+        - "comentarios"
+        summary: "Modificar"
+        description: "Modificar comentario"
+        operationId: "updateComentario"
+        consumes: 
+        - "application/json"
+        - "application/xml"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "body"
+          name: "body"
+          description: "Cuerpo de comentario a ser agregado"
+          required: true
+          schema:
+            $ref: "#/definitions/Comentario"
+        responses:
+          200:
+            description: OK
+          405:
+            description: FAIL
+      delete:
+        tags:
+        - "comentarios"
+        summary: "Eliminar"
+        description: "Eliminar comentario"
+        operationId: "eliminarComentario"
+        consumes: 
+        - "application/json"
+        - "application/xml"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "query"
+          name: "id"
+          description: "Eliminar comentario por id"
+          required: true
+          type: "integer"
+          format: "int64"
+        responses:
+          200:
+            description: OK
+          404:
+            description: "Comentario Invalido"
+  /topicos:
+      get:
+        tags: 
+        - "topicos"
+        summary: "Lista"
+        description: "Lista de topicos"
+        responses: 
+          200:
+            description: OK
+            schema:
+              type: "array"
+              items:
+                $ref: '#/definitions/Topico'
+          405:
+            description: "Elemento Invalido"
+      post:
+        tags:
+        - "topicos"
+        summary: "Alta"
+        description: "Agregar nuevo topico"
+        operationId: "addTopico"
+        consumes: 
+        - "application/json"
+        - "application/xml"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "body"
+          name: "body"
+          description: "Cuerpo de topico a ser agregado"
+          required: true
+          schema:
+            $ref: "#/definitions/Topico"
+        responses:
+          200:
+            description: OK
+          405:
+            description: FAIL
+      put:
+        tags:
+        - "topicos"
+        summary: "Modificar"
+        description: "Modificar topico"
+        operationId: "updateTopico"
+        consumes: 
+        - "application/json"
+        - "application/xml"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "body"
+          name: "body"
+          description: "Cuerpo de topico a ser agregado"
+          required: true
+          schema:
+            $ref: "#/definitions/Topico"
+        responses:
+          200:
+            description: OK
+          405:
+            description: FAIL
+      delete:
+        tags:
+        - "topicos"
+        summary: "Eliminar"
+        description: "Eliminar topico"
+        operationId: "eliminarTopico"
+        consumes: 
+        - "application/json"
+        - "application/xml"
+        produces:
+        - "application/xml"
+        - "application/json"
+        parameters:
+        - in: "query"
+          name: "id"
+          description: "Eliminar topico por id"
+          required: true
+          type: "integer"
+          format: "int64"
+        responses:
+          200:
+            description: OK
+          404:
+            description: "Topico Invalido"
+definitions:
+  Usuario:
+    type: "object"
+    properties:
+      id: 
+        type: "integer"
+        format: "int64"
+      nombre: 
+        type: "string"
+      apellido: 
+        type: "string"
+      email: 
+        type: "string"
+    xml:
+      name: "Usuario"
+  Comentario:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      topicoId: 
+        type: "integer"
+        format: "int64"
+      usuarioId:
+        type: "integer"
+        format: "int64"
+      comentario: 
+        type: "string"
+    xml: 
+      name: "Comentario"
+  Topico:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      titulo: 
+        type: "string"
+      descripcion:
+        type: "string"
+    xml: 
+      name: "Topico"
+      
+    
